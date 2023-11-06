@@ -1,2 +1,157 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class="header-nav">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">時短レシピ</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="レシピを探す" aria-label="Search">
+          <button class="btn btn-outline-success me-2" type="submit">Search</button>
+        </form>
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "マイページ", edit_user_registration_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "会員登録", new_user_registration_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div class="main-nav" style="background-color:#f0dce2;">
+  <nav id="g_navi">
+    <ul>
+      <li><%= link_to "ホーム", "/" %></li>
+      <li><%= link_to "新着レシピ", recipes_path %></li>
+      <li><%= link_to "人気レシピ", recipes_path %></li>
+      <li><%= link_to "食材別", "/" %></li>
+      <li><%= link_to "投稿する", new_recipe_path %></li>
+    </ul>
+  </nav>
+</div>
+
+<div class="carousel_wrapper">
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <% @random_recipes.each_with_index do |_, index| %>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<%= index %>" class="<%= "active" if index == 0 %>" aria-current="true" aria-label="Slide <%= index + 1 %>"></button>
+      <% end %>
+    </div>
+    <div class="carousel-inner">
+      <% @random_recipes.each_with_index do |recipe, index| %>
+        <div class="carousel-item <%= "active" if index == 0 %>">
+          <% if recipe.image? %>
+            <%= image_tag recipe.image.url, class: "d-block w-100 rounded-2" %>
+          <% else %>
+            <%= image_tag "dish.png", class: "card-img-top" %>
+          <% end %>
+          <div class="carousel-caption d-none d-md-block">
+            <h5><%= recipe.title %></h5>
+            <p><%= recipe.description %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+<div class="main-wrapper">
+  <div class="container mt-5">
+    <h3 class="midashi_kari">人気レシピ</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mx-4">
+      <% @recipes.each do |recipe| %>
+        <div class="col">
+          <div class="card h-100">
+            <div class="position-relative">
+              <% if recipe.image? %>
+                <%= image_tag recipe.image.url, class: "card-img-top rounded-2" %>
+              <% else %>
+                <%= image_tag "dish.png", class: "card-img-top" %>
+              <% end %>
+              <div class="card-img-overlay d-flex align-items-end">
+                <h5 class="card-title text-white"><%= recipe.title %></h5>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-text"><%= recipe.description %></p>
+              <%= link_to "削除", recipe_path(recipe), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <h3 class="midashi_kari">新着レシピ</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mx-4">
+      <% @recipes.each do |recipe| %>
+        <div class="col">
+          <div class="card h-100">
+            <div class="position-relative">
+              <% if recipe.image? %>
+                <%= image_tag recipe.image.url, class: "card-img-top rounded-2" %>
+              <% else %>
+                <%= image_tag "dish.png", class: "card-img-top" %>
+              <% end %>
+              <div class="card-img-overlay d-flex align-items-end">
+                <h5 class="card-title text-white"><%= recipe.title %></h5>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-text"><%= recipe.description %></p>
+              <%= link_to "削除", recipe_path(recipe), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <h3 class="midashi_kari">材料別</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mx-4">
+      <% @recipes.each do |recipe| %>
+        <div class="col">
+          <div class="card h-100">
+            <div class="position-relative">
+              <% if recipe.image? %>
+                <%= image_tag recipe.image.url, class: "card-img-top rounded-2" %>
+              <% else %>
+                <%= image_tag "dish.png", class: "card-img-top" %>
+              <% end %>
+              <div class="card-img-overlay d-flex align-items-end">
+                <h5 class="card-title text-white"><%= recipe.title %></h5>
+              </div>
+            </div>
+            <div class="card-body">
+              <p class="card-text"><%= recipe.description %></p>
+              <%= link_to "削除", recipe_path(recipe), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

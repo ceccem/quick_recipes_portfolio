@@ -13,3 +13,84 @@
  *= require_tree .
  *= require_self
  */
+
+/* トップメニュー */
+#g_navi {
+background: #2e1200;
+}
+#g_navi ul {
+  display: flex;
+  margin: 0 auto;
+  padding: 0 3%;
+  width: 94%;
+  max-width: 960px;
+  list-style-type: none;
+}
+  #g_navi ul li {
+    position: relative;
+    width: 20%;
+  }
+  #g_navi ul li:first-child::before {
+    position: absolute;
+    display: block;
+    content: "";
+    top: 25%;
+    left: 0px;
+    width: 1px;
+    height: 50%;
+    background-color: #976d52;
+  }
+  #g_navi ul li::after {
+    position: absolute;
+    display: block;
+    content: "";
+    top: 25%;
+    right: 0px;
+    width: 1px;
+    height: 50%;
+    background-color: #976d52;
+  }
+    #g_navi ul li a {
+      display: block;
+      padding: 17px 10px;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+    }
+    #g_navi ul li a:hover {
+      background-color: #472108;
+    }
+
+/* カルーセル */
+.carousel {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.carousel-inner {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.carousel_wrapper {
+  margin: 50px 0;
+}
+
+/* カードサイズ */
+.card-img-top {
+  height: 300px;
+  object-fit: cover;
+}
+
+/* 見出し(要修正) */
+.midashi_kari {
+  text-align: center;
+  color: brown;
+}
+
+/* フッター */
+.footer {
+  padding: 20px 0;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e5e5e5;
+}
