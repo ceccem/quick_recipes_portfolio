@@ -14,3 +14,12 @@
   </div>
 </div>
 
+<div class="recipe-steps">
+  <h3>手順</h3>
+  <ol>
+    <% @recipe.steps.each do |step| %>
+      <li><%= step.description %></li>
+      <li><%= step.image %></li>
+    <% end %>
+  </ol>
+</div>

@@ -33,6 +33,10 @@ class HomesController < ApplicationController
     redirect_to root_path, notice: 'レシピが正常に削除されました'
   end
 
+  def my_recipes
+    @recipes = current_user.recipes
+  end
+
   private
 
   def recipe_params
