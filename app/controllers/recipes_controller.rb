@@ -8,13 +8,13 @@ class RecipesController < ApplicationController
   end
 
   def new
-    @recipe = Recipe.new
+    @recipe_form = RecipeForm.new
   end
 
   def create
-    @recipe = current_user.recipes.create(recipe_params)
-    if @recipe.save
-      redirect_to @recipe, notice: 'レシピが正常に投稿されました'
+    @recipe_form = RecipeForm.new(recipe_form_params.merge(user: current_user))
+    if @recipe_form.save
+      redirect_to recipes_path, notice: "レシピを投稿しました"
     else
       render :new
     end
@@ -27,7 +27,7 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
     if @recipe.update(recipe_params)
-      redirect_to @recipe, notice: 'レシピが正常に更新されました'
+      redirect_to @recipe, notice: "レシピを更新しました"
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class RecipesController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
-    redirect_to recipes_path, notice: 'レシピが正常に削除されました'
+    redirect_to recipes_path, notice: "レシピを削除しました"
   end
 
   def my_recipes
@@ -45,7 +45,7 @@ class RecipesController < ApplicationController
 
   private
 
-  def recipe_params
-    params.require(:recipe).permit(:title, :description, :cooking_time, :image)
+  def recipe_form_params
+    params.require(:recipe_form).permit(:title, :description, :cooking_time, :image, steps_attributes: [:description, :image])
   end
 end

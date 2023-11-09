@@ -1,9 +1,9 @@
-<%= form_with(model: @recipe, local: true) do |f| %>
-  <% if @recipe.errors.any? %>
+<%= form_with(model: @recipe_form, url: recipes_path, local: true) do |f| %>
+  <% if @recipe_form.errors.any? %>
     <div class="alert alert-danger">
       <h5>エラーが発生しました</h5>
       <ul class="mb-0">
-        <% @recipe.errors.full_messages.each do |message| %>
+        <% @recipe_form.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -29,6 +29,19 @@
     <%= f.label :image %>
     <%= f.file_field :image %>
   </div>
+
+  <h3>手順</h3>
+  <!-- 要修正(現状3step。JSで動的表示に変更する。+押したら追加できるみたいな) -->
+  <% 3.times do |index| %>
+    <div class="field">
+      <%= f.label "steps_attributes[#{index}][description]", "説明 #{index + 1}" %>
+      <%= f.text_area "steps_attributes[#{index}][description]" %>
+    </div>
+    <div class="field">
+      <%= f.label "steps_attributes[#{index}][image]", "画像 #{index + 1}" %>
+      <%= f.file_field "steps_attributes[#{index}][image]" %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit "投稿" %>

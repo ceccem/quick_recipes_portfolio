@@ -19,7 +19,9 @@
   <ol>
     <% @recipe.steps.each do |step| %>
       <li><%= step.description %></li>
-      <li><%= step.image %></li>
+      <% if step.image? %>
+        <%= image_tag(step.image.url) %>
+      <% end %>
     <% end %>
   </ol>
 </div>
