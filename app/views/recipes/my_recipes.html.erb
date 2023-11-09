@@ -1,9 +1,24 @@
-<h1>My Recipes</h1>
-<div class="recipes">
-  <% @recipes.each do |recipe| %>
-    <div class="recipe">
-      <h2><%= recipe.title %></h2>
-      <h2><%= recipe.title %></h2>
-    </div>
-  <% end %>
+<h1>マイレシピ</h1>
+<div class="container mt-5">
+  <div class="row row-cols-1 row-cols-md-3 g-4 mx-4">
+    <% @recipes.each do |recipe| %>
+      <div class="col">
+        <div class="card h-100">
+          <% if recipe.image? %>
+            <%= image_tag recipe.image.url, class: "card-img-top" %>
+          <% else %>
+            <%= image_tag "dish.png", class: "card-img-top" %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title text-white"><%= link_to recipe.title, recipe_path(recipe) %></h5>
+            <p class="card-text"><%= recipe.description %></p>
+          </div>
+          <%= link_to "削除", recipe_path(recipe), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+          <%= link_to "レシピを修正する", edit_recipe_path(recipe), class: "btn btn-dark" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
+
+<%= link_to "アカウント情報編集", edit_user_registration_path, class: "nav-link" %>
