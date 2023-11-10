@@ -29,4 +29,5 @@
 <div>
   <h1><%= @recipe.title %></h1>
   <p>投稿者: <%= @recipe.user.username %></p>
+  <%= link_to 'プロフィールを見る', user_path(@recipe.user) %>
 </div>

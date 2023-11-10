@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :users, only: [:show]
   root to: 'homes#top'
   resources :recipes
   get 'my_recipes', to: 'recipes#my_recipes'
