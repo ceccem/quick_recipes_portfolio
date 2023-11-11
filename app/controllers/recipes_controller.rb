@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+  before_action :authenticate_user!, only: [:my_favorites]
+
   def index
     @recipes = Recipe.all
   end
@@ -41,6 +43,7 @@ class RecipesController < ApplicationController
 
   def my_recipes
     @recipes = current_user.recipes
+    @favorite_recipes = current_user.favorite_recipes
   end
 
   private

@@ -31,3 +31,13 @@
   <p>投稿者: <%= @recipe.user.username %></p>
   <%= link_to 'プロフィールを見る', user_path(@recipe.user) %>
 </div>
+
+<div>
+  <% if user_signed_in? %>
+    <% if current_user.favorite_recipes.include?(@recipe) %>
+      <%= link_to 'お気に入り解除', recipe_favorite_path(@recipe, @recipe.favorites.find_by(user: current_user)), method: :delete %>
+    <% else %>
+      <%= link_to 'お気に入りに追加', recipe_favorites_path(@recipe), method: :post %>
+    <% end %>
+  <% end %>
+</div>
