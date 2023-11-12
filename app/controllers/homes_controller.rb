@@ -2,6 +2,11 @@ class HomesController < ApplicationController
   def top
     @recipes = Recipe.all
     @random_recipes = Recipe.order("RANDOM()").limit(4)
+    @popular_recipes = Recipe.joins(:favorites)
+                             .group('recipes.id')
+                             .having('COUNT(favorites.id) > 0')
+                             .order('COUNT(favorites.id) DESC')
+    @recent_recipes = Recipe.order(created_at: :desc)
   end
 
   def show
