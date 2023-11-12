@@ -94,3 +94,24 @@ background: #2e1200;
   background-color: #f9f9f9;
   border-top: 1px solid #e5e5e5;
 }
+
+
+/* recipes/show(要修正) */
+.recipe-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.recipe-left, .recipe-right {
+  flex: 1;
+}
+
+.recipe-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.recipe-steps {
+  margin-top: 20px;
+}
+

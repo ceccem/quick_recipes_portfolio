@@ -1,43 +1,46 @@
-<div class="row row-cols-1 row-cols-md-3 g-4 mx-4">
-  <div class="col">
-    <div class="card h-100">
-      <% if @recipe.image? %>
-        <%= image_tag @recipe.image.url, class: "card-img-top" %>
-      <% else %>
-        <%= image_tag "dish.png", class: "card-img-top" %>
+<p>ホーム/レシピ/<%= @recipe.title %></p>
+<div class="recipe-container">
+  <div class="recipe-left">
+    <h2><%= @recipe.title %></h2>
+    <% if @recipe.image? %>
+      <%= image_tag @recipe.image.url, class: "recipe-image" %>
+    <% else %>
+      <%= image_tag "dish.png", class: "recipe-image" %>
+    <% end %>
+
+    <p><%= @recipe.description %></p>
+    <p>投稿者: <%= link_to @recipe.user.username, user_path(@recipe.user) %></p>
+    <div>
+      <% if user_signed_in? %>
+        <% if current_user.favorite_recipes.include?(@recipe) %>
+          <%= link_to 'お気に入り解除', recipe_favorite_path(@recipe, @recipe.favorites.find_by(user: current_user)), method: :delete %>
+        <% else %>
+          <%= link_to 'お気に入りに追加', recipe_favorites_path(@recipe), method: :post %>
+        <% end %>
       <% end %>
-      <div class="card-body">
-        <h5 class="card-title"><%= @recipe.title %></h5>
-        <p class="card-text"><%= @recipe.description %></p>
-      </div>
     </div>
+    
+  </div>
+
+  <div class="recipe-right">
+    <h3>材料</h3>
+    <ul>
+      <li>じゃがいも</li>
+      <li>ソーセージ</li>
+      <li>緑のやつ</li>
+      <li>塩こしょう</li>
+    </ul>
   </div>
 </div>
 
 <div class="recipe-steps">
-  <h3>手順</h3>
+  <h3>レシピ</h3>
   <ol>
     <% @recipe.steps.each do |step| %>
       <li><%= step.description %></li>
       <% if step.image? %>
-        <%= image_tag(step.image.url) %>
+        <%= image_tag step.image.thumb.url %>
       <% end %>
     <% end %>
   </ol>
-</div>
-
-<div>
-  <h1><%= @recipe.title %></h1>
-  <p>投稿者: <%= @recipe.user.username %></p>
-  <%= link_to 'プロフィールを見る', user_path(@recipe.user) %>
-</div>
-
-<div>
-  <% if user_signed_in? %>
-    <% if current_user.favorite_recipes.include?(@recipe) %>
-      <%= link_to 'お気に入り解除', recipe_favorite_path(@recipe, @recipe.favorites.find_by(user: current_user)), method: :delete %>
-    <% else %>
-      <%= link_to 'お気に入りに追加', recipe_favorites_path(@recipe), method: :post %>
-    <% end %>
-  <% end %>
 </div>
