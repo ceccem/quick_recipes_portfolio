@@ -46,6 +46,16 @@ class RecipesController < ApplicationController
     @favorite_recipes = current_user.favorite_recipes
   end
 
+  def new_recipes
+    @recipes = Recipe.order(created_at: :desc)
+    render 'index'
+  end
+
+  def popular_recipes
+    @recipes = Recipe.left_joins(:favorites).group(:id).having('COUNT(favorites.id) > 0').order('COUNT(favorites.id) DESC')
+    render 'index'
+  end
+
   private
 
   def recipe_params

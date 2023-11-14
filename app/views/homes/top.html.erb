@@ -14,7 +14,7 @@
             <%= image_tag "dish.png", class: "card-img-top" %>
           <% end %>
           <div class="carousel-caption d-none d-md-block">
-            <h5><%= recipe.title %></h5>
+            <h5><%= link_to recipe.title, recipe_path(recipe) %></h5>
             <p><%= recipe.description %></p>
           </div>
         </div>
