@@ -10,6 +10,14 @@
     </div>
   <% end %>
 
+  <h3>調味料</h3>
+  <div class="field">
+    <% Ingredient.all.each do |ingredient| %>
+      <%= f.check_box :ingredient_ids, { multiple: true }, ingredient.id, nil %>
+      <%= ingredient.name %><br>
+    <% end %>
+  </div>
+
   <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title %>

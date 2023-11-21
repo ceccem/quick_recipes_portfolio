@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :ingredients
   devise_for :users
   resources :users, only: [:show]
   root to: 'homes#top'

@@ -111,3 +111,9 @@
     </div>
   </div>
 </div>
+
+<% if user_signed_in? %>
+    <div class="container mt-5">
+      <%= link_to '調味料を追加', new_ingredient_path, class: "btn btn-primary" %>
+    </div>
+  <% end %>
