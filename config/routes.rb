@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'dashboard/index'
+  end
   resources :ingredients
   devise_for :users
   resources :users, only: [:show]
