@@ -1,3 +1,15 @@
+<% if user_signed_in? %>
+  <div class="user-profile">
+    <% if current_user.icon? %>
+      <%= image_tag current_user.icon.url, class: "user-icon" %>
+    <% else %>
+      <%= image_tag "default_icon.png", class: "user-icon" %> <!-- デフォルトアイコンのパスを指定 -->
+    <% end %>
+    <h2><%= current_user.username %></h2>
+    <p><%= current_user.message %></p>
+  </div>
+<% end %>
+
 <h1>マイレシピ</h1>
 <div class="container mt-5">
   <div class="row row-cols-1 row-cols-md-3 g-4 mx-4">
