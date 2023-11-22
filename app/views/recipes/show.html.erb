@@ -15,7 +15,8 @@
     <% end %>
 
     <p><%= @recipe.description %></p>
-    <p>投稿者: <%= link_to @recipe.user.username, user_path(@recipe.user) %></p>
+    <p>投稿者 : <%= link_to @recipe.user.username, user_path(@recipe.user) %></p>
+    <p>調理時間 : <%= @recipe.cooking_time %>分</p>
     <div>
       <% if user_signed_in? %>
         <% if current_user.favorite_recipes.include?(@recipe) %>
@@ -35,6 +36,12 @@
       <li>ソーセージ</li>
       <li>緑のやつ</li>
       <li>塩こしょう</li>
+    </ul>
+    <h3>調味料</h3>
+    <ul>
+      <% @ingredients.each do |ingredient| %>
+        <li><%= ingredient.name %></li>
+      <% end %>
     </ul>
   </div>
 </div>

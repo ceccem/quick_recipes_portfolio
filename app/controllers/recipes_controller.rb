@@ -7,6 +7,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @ingredients = @recipe.ingredients
   end
 
   def new
@@ -63,6 +64,6 @@ class RecipesController < ApplicationController
   end
 
   def recipe_form_params
-    params.require(:recipe_form).permit(:title, :description, :cooking_time, :image, steps_attributes: [:description, :image])
+    params.require(:recipe_form).permit(:title, :description, :cooking_time, :image, ingredient_ids: [],steps_attributes: [:description, :image])
   end
 end
