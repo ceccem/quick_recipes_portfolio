@@ -3,7 +3,7 @@
     <% if current_user.icon? %>
       <%= image_tag current_user.icon.url, class: "user-icon" %>
     <% else %>
-      <%= image_tag "default_icon.png", class: "user-icon" %> <!-- デフォルトアイコンのパスを指定 -->
+      <%= image_tag "default_icon.png", class: "user-icon" %>
     <% end %>
     <h2><%= current_user.username %></h2>
     <p><%= current_user.message %></p>

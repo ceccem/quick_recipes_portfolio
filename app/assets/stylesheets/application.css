@@ -115,3 +115,10 @@ background: #2e1200;
   margin-top: 20px;
 }
 
+
+/* ユーザーアイコン */
+.user-icon {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
