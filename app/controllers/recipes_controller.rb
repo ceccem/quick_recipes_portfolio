@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:my_recipes]
+  before_action :check_owner_or_admin, only: [:edit, :update, :destroy]
 
   def index
     @recipes = Recipe.all
@@ -65,5 +66,12 @@ class RecipesController < ApplicationController
 
   def recipe_form_params
     params.require(:recipe_form).permit(:title, :description, :cooking_time, :image, ingredient_ids: [],steps_attributes: [:description, :image])
+  end
+
+  def check_owner_or_admin
+    @recipe = Recipe.find(params[:id])
+    unless current_user == @recipe.user || current_user.admin?
+      redirect_to recipes_path, alert: "権限がありません"
+    end
   end
 end
