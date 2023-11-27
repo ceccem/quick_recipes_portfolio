@@ -5,7 +5,13 @@
       <li><%= link_to "新着レシピ", new_recipes_path %></li>
       <li><%= link_to "人気レシピ", popular_recipes_path %></li>
       <li><%= link_to "食材別", "/" %></li>
-      <li><%= link_to "投稿する", new_recipe_path %></li>
+      <li>
+        <% if user_signed_in? %>
+          <%= link_to "投稿する", new_recipe_path %>
+        <% else %>
+          <%= link_to "投稿する", new_user_session_path %>
+        <% end %>
+      </li>
     </ul>
   </nav>
 </div>
