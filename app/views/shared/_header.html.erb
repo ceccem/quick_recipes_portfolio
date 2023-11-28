@@ -7,10 +7,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="レシピを探す" aria-label="Search">
-          <button class="btn btn-outline-success me-2" type="submit">Search</button>
-        </form>
+        <%= search_form_for @q, url: recipes_path, class: "d-flex" do |f| %>
+          <%= f.search_field :title_or_description_cont, class: "form-control me-2", placeholder: "レシピを探す" %>
+          <%= f.submit "Search", class: "btn btn-outline-success me-2" %>
+        <% end %>
         <ul class="navbar-nav mb-2 mb-lg-0">
           <% if user_signed_in? %>
             <li class="nav-item">
