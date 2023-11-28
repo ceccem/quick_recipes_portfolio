@@ -1,0 +1,12 @@
+<div class="recipe-ingredients">
+  <h3>調味料一覧</h3>
+  <ul>
+    <% @ingredients.each do |ingredient| %>
+      <li>
+        <%= ingredient.name %>
+        <%= link_to '編集', edit_admin_ingredient_path(ingredient), class: 'btn btn-primary' %>
+        <%= link_to '削除', admin_ingredient_path(ingredient), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      </li>
+    <% end %>
+  </ul>
+</div>

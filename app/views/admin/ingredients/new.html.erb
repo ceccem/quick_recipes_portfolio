@@ -1,6 +1,6 @@
-<h1>新しい調味料を追加</h1>
+<h1>調味料を追加</h1>
 
-<%= form_with(model: @ingredient, local: true) do |form| %>
+<%= form_with(model: [:admin, @ingredient], local: true) do |form| %>
   <% if @ingredient.errors.any? %>
     <div class="alert alert-danger">
       <h5>エラーが発生しました</h5>

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   namespace :admin do
     get 'dashboard', to: 'dashboard#index'
+    resources :ingredients
   end
-  resources :ingredients
   devise_for :users
   resources :users, only: [:show]
   root to: 'homes#top'
