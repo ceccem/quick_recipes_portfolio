@@ -12,9 +12,9 @@
 
   <h3>調味料</h3>
   <div class="field">
-    <% Ingredient.all.each do |ingredient| %>
-      <%= f.check_box :ingredient_ids, { multiple: true }, ingredient.id, nil %>
-      <%= ingredient.name %><br>
+    <% Seasoning.all.each do |seasoning| %>
+      <%= f.check_box :seasoning_ids, { multiple: true }, seasoning.id, nil %>
+      <%= seasoning.name %><br>
     <% end %>
   </div>
 

@@ -2,8 +2,8 @@
 
 one:
   recipe: one
-  ingredient: one
+  seasoning: one
 
 two:
   recipe: two
-  ingredient: two
+  seasoning: two

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     get 'dashboard', to: 'dashboard#index'
-    resources :ingredients
+    resources :seasonings
   end
   devise_for :users
   resources :users, only: [:show]

@@ -1,0 +1,12 @@
+<div class="recipe-seasonings">
+  <h3>調味料一覧</h3>
+  <ul>
+    <% @seasonings.each do |seasoning| %>
+      <li>
+        <%= seasoning.name %>
+        <%= link_to '編集', edit_admin_seasoning_path(seasoning), class: 'btn btn-primary' %>
+        <%= link_to '削除', admin_seasoning_path(seasoning), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      </li>
+    <% end %>
+  </ul>
+</div>

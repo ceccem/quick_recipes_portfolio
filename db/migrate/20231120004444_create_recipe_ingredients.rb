@@ -1,8 +1,8 @@
-class CreateRecipeIngredients < ActiveRecord::Migration[6.1]
+class CreateRecipeSeasonings < ActiveRecord::Migration[6.1]
   def change
-    create_table :recipe_ingredients do |t|
+    create_table :recipe_seasonings do |t|
       t.references :recipe, null: false, foreign_key: true
-      t.references :ingredient, null: false, foreign_key: true
+      t.references :seasoning, null: false, foreign_key: true
 
       t.timestamps
     end
