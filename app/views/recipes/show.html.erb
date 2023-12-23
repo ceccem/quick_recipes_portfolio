@@ -33,13 +33,13 @@
   </div>
 
   <div class="recipe-right">
-    <h3>材料</h3>
+    <h3>食材</h3>
     <ul>
-      <li>じゃがいも</li>
-      <li>ソーセージ</li>
-      <li>緑のやつ</li>
-      <li>塩こしょう</li>
+      <% @ingredients.each do |ingredient| %>
+        <li><%= ingredient.name %></li>
+      <% end %>
     </ul>
+
     <h3>調味料</h3>
     <ul>
       <% @seasonings.each do |seasoning| %>

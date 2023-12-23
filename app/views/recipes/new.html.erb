@@ -38,6 +38,11 @@
     <%= f.file_field :image %>
   </div>
 
+  <div class="field">
+    <%= f.label :new_ingredient_name, "新しい食材" %>
+    <%= f.text_field :new_ingredient_name %>
+  </div>
+
   <h3>手順</h3>
   <!-- 要修正(現状3step。JSで動的表示に変更する。+押したら追加できるみたいな) -->
   <% 3.times do |index| %>

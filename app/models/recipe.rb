@@ -7,6 +7,8 @@ class Recipe < ApplicationRecord
   has_many :favorited_by, through: :favorites, source: :user
   has_many :recipe_seasonings, dependent: :destroy
   has_many :seasonings, through: :recipe_seasonings
+  has_many :recipe_ingredients, dependent: :destroy
+  has_many :ingredients, through: :recipe_ingredients
   def self.ransackable_attributes(auth_object = nil)
     %w[title description]
   end

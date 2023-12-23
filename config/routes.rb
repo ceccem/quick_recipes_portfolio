@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :recipes do
     resources :favorites, only: [:create, :destroy]
   end
+  resources :ingredients
   get 'my_recipes', to: 'recipes#my_recipes'
   get 'new_recipes', to: 'recipes#new_recipes'
   get 'popular_recipes', to: 'recipes#popular_recipes'
