@@ -1,7 +1,7 @@
 class RecipeForm
   include ActiveModel::Model
 
-  attr_accessor :title, :description, :cooking_time, :image, :steps_attributes, :user, :seasoning_ids, :ingredient_ids, :new_ingredient_name
+  attr_accessor :title, :description, :cooking_time, :image, :steps_attributes, :user, :seasoning_ids, :ingredient_ids, :ingredient_names
 
   def save
     return false unless valid?
@@ -13,10 +13,12 @@ class RecipeForm
       end
       recipe.seasoning_ids = seasoning_ids if seasoning_ids.present?
       recipe.ingredient_ids = ingredient_ids if ingredient_ids.present?
-      if new_ingredient_name.present?
-        new_ingredient = Ingredient.find_or_create_by(name: new_ingredient_name)
-        recipe.ingredients << new_ingredient
+      (ingredient_names || []).each do |name|
+        next if name.blank?
+        ingredient = Ingredient.find_or_create_by!(name: name)
+        recipe.ingredients << ingredient
       end
+      
       recipe.save!
     end
     true
