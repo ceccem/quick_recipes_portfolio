@@ -44,21 +44,14 @@
   </div>
   <button id="add-ingredient" type="button">食材を追加</button>
 
-  <h3>手順</h3>
-  <!-- 要修正(現状3step。JSで動的表示に変更する。+押したら追加できるみたいな) -->
-  <% 3.times do |index| %>
-    <div class="field">
-      <%= f.label "steps_attributes[#{index}][description]", "説明 #{index + 1}" %>
-      <%= f.text_area "steps_attributes[#{index}][description]" %>
-    </div>
-    <div class="field">
-      <%= f.label "steps_attributes[#{index}][image]", "画像 #{index + 1}" %>
-      <%= f.file_field "steps_attributes[#{index}][image]" %>
-    </div>
-  <% end %>
+  <div id="steps-container">
+    <h3>手順</h3>
+  </div>
+  <button id="add-step" type="button">手順を追加</button>
 
   <div class="actions">
     <%= f.submit "投稿" %>
   </div>
 <% end %>
 <%= javascript_pack_tag 'ingredient_fields' %>
+<%= javascript_pack_tag 'step_fields' %>
