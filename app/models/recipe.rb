@@ -16,4 +16,12 @@ class Recipe < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
     []
   end
+
+  def self.ransackable_scopes(auth_object = nil)
+    [:ingredients_name_cont]
+  end
+
+  def self.ingredients_name_cont(query)
+    joins(:ingredients).where('ingredients.name LIKE ?', "%#{query}%")
+  end
 end
