@@ -13,8 +13,6 @@
             <h5 class="card-title text-white"><%= link_to recipe.title, recipe_path(recipe) %></h5>
             <p class="card-text"><%= recipe.description %></p>
           </div>
-          <%= link_to "削除", recipe_path(recipe), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
-          <%= link_to "レシピを修正する", edit_recipe_path(recipe), class: "btn btn-dark" %>
         </div>
       </div>
     <% end %>

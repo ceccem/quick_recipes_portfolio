@@ -216,3 +216,82 @@ textarea {
 }
 
 /* マイページ */
+
+/* 左側のタブメニューのスタイル */
+.nav-pills {
+  flex: 3; /* 左側の幅を全体の3割に設定 */
+  margin-right: 1rem; /* 右のコンテンツとの間隔 */
+}
+
+/* 右側のコンテンツエリアのスタイル */
+.tab-content {
+  flex: 7; /* 右側の幅を全体の7割に設定 */
+}
+
+/* タブメニューのボタンスタイル */
+.nav-link {
+  width: 100%; /* タブの幅を親要素いっぱいに広げる */
+  margin-bottom: 0.5rem; /* タブ同士の間隔 */
+  text-align: center; /* テキストを中央揃え */
+}
+
+/* アクティブなタブメニューのスタイル */
+.nav-link.active {
+  color: #fff; /* アクティブなタブのテキスト色 */
+  background-color: #007bff; /* アクティブなタブの背景色 */
+}
+
+/* プロフィールセクションのスタイル */
+.user-profile {
+  text-align: center; /* 中央揃え */
+}
+
+.user-icon {
+  display: block; /* ブロックレベル要素として表示 */
+  margin: 0 auto; /* 上下のマージンは0、左右は自動で中央に */
+  border-radius: 50%; /* アイコンを円形に */
+  width: 150px; /* アイコンの幅 */
+  height: 150px; /* アイコンの高さ */
+}
+
+/* カードのスタイル（マイレシピとお気に入りレシピ） */
+.card-img-top {
+  width: 100%; /* 画像をカードの幅いっぱいに広げる */
+  height: auto; /* 画像の高さは自動調整 */
+}
+
+.card-title {
+  margin-bottom: 0.5rem; /* タイトルの下のマージン */
+}
+
+.card-text {
+  margin-bottom: 1rem; /* 説明文の下のマージン */
+}
+
+/* ボタンスタイルの調整 */
+.btn {
+  margin-top: 0.5rem; /* ボタンの上のマージン */
+  margin-bottom: 0.5rem; /* ボタンの下のマージン */
+}
+
+/* タブコンテンツエリアのタイトルスタイル */
+.tab-content h1 {
+  text-align: center; /* 中央揃え */
+  margin-bottom: 1rem; /* 下のマージン */
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .d-flex {
+    flex-direction: column; /* モバイル表示では縦並びに */
+  }
+
+  .nav-pills {
+    margin-right: 0; /* 右の間隔を0に */
+    margin-bottom: 1rem; /* 下の間隔を追加 */
+  }
+
+  .tab-content {
+    flex-basis: 100%; /* タブコンテンツエリアを幅いっぱいに */
+  }
+}
