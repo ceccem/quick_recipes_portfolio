@@ -1,56 +1,62 @@
 <%= form_with(model: @recipe_form, url: recipes_path, local: true) do |f| %>
-  <% if @recipe_form.errors.any? %>
-    <div class="alert alert-danger">
-      <h5>エラーが発生しました</h5>
-      <ul class="mb-0">
-        <% @recipe_form.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <h3>調味料</h3>
-  <div class="field">
-    <% Seasoning.all.each do |seasoning| %>
-      <%= f.check_box :seasoning_ids, { multiple: true }, seasoning.id, nil %>
-      <%= seasoning.name %><br>
+  <div class="form-container">
+    <% if @recipe_form.errors.any? %>
+      <div class="alert alert-danger">
+        <h5>エラーが発生しました</h5>
+        <ul class="mb-0">
+          <% @recipe_form.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
-  </div>
 
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
+    <div class="left-section">
+      <div class="field">
+        <%= f.label :image_file, "画像をアップロード", class: "image_input_btn" %>
+        <%= f.file_field :image_file, class: "image_form" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
+      <div class="field">
+        <%= f.text_field :title, placeholder: "タイトルを入力してください" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :cooking_time %>
-    <%= f.number_field :cooking_time %>
-  </div>
+      <div class="field">
+        <%= f.text_area :description, placeholder: "説明文を入力してください" %>
+      </div>
 
-  <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-  </div>
+      <div class="field">
+        <%= f.number_field :cooking_time, placeholder: "調理時間を指定してください" %>
+      </div>
+    </div>
+    
+    <div class="right-section">
+      <h3>調味料</h3>
+      <div class="field">
+        <% Seasoning.all.each do |seasoning| %>
+          <%= f.check_box :seasoning_ids, { multiple: true }, seasoning.id, nil %>
+          <%= seasoning.name %><br>
+        <% end %>
+      </div>
 
-  <div id="ingredients-container">
-    <h3>食材</h3>
-    <input type="text" name="recipe_form[ingredient_names][]">
-  </div>
-  <button id="add-ingredient" type="button">食材を追加</button>
+      <div id="ingredients-container">
+        <h3>食材</h3>
+        <input type="text" name="recipe_form[ingredient_names][]">
+      </div>
+      <button id="add-ingredient" type="button">食材を追加</button>
+    </div>
 
-  <div id="steps-container">
-    <h3>手順</h3>
-  </div>
-  <button id="add-step" type="button">手順を追加</button>
+    <div class="bottom-section">
+      <div id="steps-container">
+        <h3>手順</h3>
+      </div>
+      <button id="add-step" type="button">手順を追加</button>
 
-  <div class="actions">
-    <%= f.submit "投稿" %>
+      <div class="actions">
+        <%= f.submit "投稿" %>
+      </div>
+    </div>
+
   </div>
 <% end %>
 <%= javascript_pack_tag 'ingredient_fields' %>

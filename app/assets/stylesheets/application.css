@@ -122,3 +122,97 @@ background: #2e1200;
   height: 150px;
   border-radius: 50%;
 }
+
+
+/* 投稿フォーム（仮） */
+
+/* フォームのレイアウト */
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* セクション間のスペース */
+}
+
+.left-section, .right-section {
+  flex: 1; /* 左右セクションのためのフレックス */
+}
+
+.left-section {
+  order: 1;
+}
+
+.right-section {
+  order: 2;
+}
+
+.bottom-section {
+  flex-basis: 100%; /* 下部セクションのためのフル幅 */
+  order: 3;
+}
+
+.field, .actions {
+  margin-bottom: 10px;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .form-container {
+    flex-direction: column;
+  }
+
+  .left-section, .right-section {
+    flex-basis: 100%; /* モバイルビューでフル幅 */
+  }
+}
+
+/* エラーメッセージのスタイリング */
+.alert-danger {
+  color: red;
+  border: 1px solid red;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* ラベルスタイル */
+/* ラベルを非表示にする */
+label {
+  display: none;
+}
+
+/* フォーム要素のスタイル */
+input[type="text"],
+input[type="number"],
+input[type="file"],
+textarea {
+  width: 40%; /* フル幅 */
+  padding: 8px;
+  border: 1px solid #ccc; /* 境界線を微調整 */
+  border-radius: 4px; /* 角を丸く */
+  margin-bottom: 10px; /* 下部のマージン */
+}
+
+/* プレースホルダーのスタイル（オプション） */
+::placeholder {
+  color: #888; /* プレースホルダーのテキスト色 */
+}
+
+/* file_field */
+.image_input_btn{
+  display: block;
+  background-color: brown;
+  width: 180px;
+  height: 30px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  padding-top: 2px;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+.image_form{
+  display: none;
+}
+
+/* マイページ */
