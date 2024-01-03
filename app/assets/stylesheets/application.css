@@ -14,6 +14,15 @@
  *= require_self
  */
 
+/* ヘッダー */
+.header-logo {
+  font-family: 'RocknRoll One', sans-serif;
+  font-family: 'Yusei Magic', sans-serif;
+  font-family: 'Zen Maru Gothic', serif;
+  font-size: 40px !important;
+  color: #2e1200 !important;
+}
+
 /* トップメニュー */
 #g_navi {
 background: #2e1200;
