@@ -5,22 +5,13 @@
     <li class="breadcrumb-item active" aria-current="page"><%= @recipe.title %></li>
   </ol>
 </nav>
-<div class="recipe-container">
-  <div class="recipe-left">
-    <h2><%= @recipe.title %></h2>
-    <% if @recipe.image? %>
-      <%= image_tag @recipe.image.url, class: "recipe-image" %>
-    <% else %>
-      <%= image_tag "dish.png", class: "recipe-image" %>
-    <% end %>
 
-    <p><%= @recipe.description %></p>
-    <% if @recipe.user.icon? %>
-      <%= image_tag @recipe.user.icon.url, class: "user-icon" %>
-    <% end %>
-    <p>投稿者 : <%= link_to @recipe.user.username, user_path(@recipe.user) %></p>
-    <p>調理時間 : <%= @recipe.cooking_time %>分</p>
-    <div>
+<div class="recipe-container">
+  <div class="recipe-top">
+    <div class="recipe-title">
+      <h2><%= @recipe.title %></h2>
+    </div>
+    <div class="recipe-favorite">
       <% if user_signed_in? %>
         <% if current_user.favorite_recipes.include?(@recipe) %>
           <%= link_to 'お気に入り解除', recipe_favorite_path(@recipe, @recipe.favorites.find_by(user: current_user)), method: :delete %>
@@ -29,9 +20,22 @@
         <% end %>
       <% end %>
     </div>
-    
+    <div class="recipe-user">
+      <% if @recipe.user.icon? %>
+        <%= image_tag @recipe.user.icon.url, class: "user-icon" %>
+      <% end %>
+      <p>投稿者 : <%= link_to @recipe.user.username, user_path(@recipe.user) %></p>
+    </div>
   </div>
-
+  <div class="recipe-left">
+    <% if @recipe.image? %>
+      <%= image_tag @recipe.image.url, class: "recipe-image" %>
+    <% else %>
+      <%= image_tag "dish.png", class: "recipe-image" %>
+    <% end %>
+    <p>調理時間 : <%= @recipe.cooking_time %>分</p>
+    <p><%= @recipe.description %></p>
+  </div>
   <div class="recipe-right">
     <h3>食材</h3>
     <ul>

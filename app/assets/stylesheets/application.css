@@ -295,3 +295,96 @@ textarea {
     flex-basis: 100%; /* タブコンテンツエリアを幅いっぱいに */
   }
 }
+
+/* recipe/show(要修正) */
+/* 基本スタイリング */
+.breadcrumb {
+  padding: 10px 15px; /* ナビゲーションのパディング */
+  background-color: #f8f9fa; /* ナビゲーションの背景色 */
+  border-radius: .25rem; /* 角を丸く */
+}
+
+/* レシピコンテナのスタイリング */
+.recipe-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* 要素間に余白を設定 */
+  margin-bottom: 20px; /* 下部のマージン */
+}
+
+.recipe-top {
+  width: 100%; /* 上部セクションの幅 */
+  display: flex;
+  justify-content: space-between; /* タイトルとお気に入りボタンを両端に */
+  align-items: center;
+}
+
+.recipe-left, .recipe-right {
+  flex-basis: 48%; /* 左右セクションの幅 */
+  margin-bottom: 20px; /* 下部のマージン */
+}
+
+.recipe-image, .user-icon, .step-image {
+  border-radius: 10px; /* 画像の角を丸く */
+}
+
+.user-icon {
+  width: 50px; /* 投稿者アイコンの幅 */
+  height: 50px; /* 投稿者アイコンの高さ */
+}
+
+/* 食材と調味料のリスト */
+.recipe-right ul {
+  padding-left: 20px; /* リストの左パディング */
+}
+
+/* レシピ手順のスタイリング */
+.recipe-steps {
+  width: 100%; /* 下部セクションの幅 */
+}
+
+.recipe-steps h3 {
+  margin-bottom: 15px; /* タイトルの下マージン */
+}
+
+.recipe-steps ol {
+  padding-left: 20px; /* 手順リストの左パディング */
+}
+
+.recipe-steps li {
+  margin-bottom: 10px; /* 手順間のマージン */
+  position: relative; /* 線を引くためのポジション設定 */
+  padding-left: 10px; /* テキストの左パディング */
+}
+
+.recipe-steps li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  bottom: -10px;
+  width: 95%;
+  border-bottom: 1px solid #ddd; /* 手順間の区切り線 */
+}
+
+.step-image {
+  width: 100px; /* 手順画像の幅 */
+  height: auto; /* 手順画像の高さは自動で調整 */
+  margin-top: 10px; /* 画像の上マージン */
+  display: block; /* ブロックレベル要素として表示 */
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .recipe-container {
+    flex-direction: column; /* スマートフォンでは縦並び */
+  }
+
+  .recipe-left, .recipe-right {
+    flex-basis: 100%; /* スマートフォンでは幅を100%に */
+  }
+
+  .recipe-top {
+    flex-direction: column; /* タイトルとお気に入りボタンを縦並びに */
+    align-items: flex-start;
+  }
+}
