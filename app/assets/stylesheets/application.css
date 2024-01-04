@@ -224,6 +224,29 @@ textarea {
   display: none;
 }
 
+/* 投稿の調味料のとこ */
+.seasonings-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.seasonings-field {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.seasoning {
+  flex-basis: calc(33.333% - 10px); /* 3つのアイテムを1行に配置 */
+  margin-right: 10px; /* アイテム間の余白 */
+}
+
+@media (max-width: 768px) {
+  .seasoning {
+    flex-basis: calc(50% - 10px); /* モバイルビューで2つのアイテムを1行に */
+  }
+}
+
+
 /* マイページ */
 
 /* 左側のタブメニューのスタイル */

@@ -10,12 +10,12 @@
         </ul>
       </div>
     <% end %>
-
+    
     <div class="left-section">
-      <div class="field">
-        <%= f.label :image_file, "画像をアップロード", class: "image_input_btn" %>
-        <%= f.file_field :image_file, class: "image_form" %>
-      </div>
+      <%= f.label :image do %>
+        <%= image_tag('camera.png', size: "260x260") %>
+        <%= f.file_field :image, style: 'display:none' %>
+      <% end %>
 
       <div class="field">
         <%= f.text_field :title, placeholder: "タイトルを入力してください" %>
@@ -31,12 +31,16 @@
     </div>
     
     <div class="right-section">
-      <h3>調味料</h3>
-      <div class="field">
-        <% Seasoning.all.each do |seasoning| %>
-          <%= f.check_box :seasoning_ids, { multiple: true }, seasoning.id, nil %>
-          <%= seasoning.name %><br>
-        <% end %>
+      <div class="seasonings-container">
+        <h3>調味料</h3>
+        <div class="seasonings-field">
+          <% Seasoning.all.each do |seasoning| %>
+            <div class="seasoning">
+              <%= f.check_box :seasoning_ids, { multiple: true }, seasoning.id, nil %>
+              <%= seasoning.name %>
+            </div>
+          <% end %>
+        </div>
       </div>
 
       <div id="ingredients-container">
