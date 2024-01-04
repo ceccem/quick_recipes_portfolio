@@ -183,17 +183,51 @@ background: #2e1200;
 }
 
 /* ラベルスタイル */
-/* ラベルを非表示にする */
 label {
-  display: none;
+  display: flex; /* flexを使って中央に */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px; /* テキストのサイズ */
+  color: #2e1200; /* テキストの色 */
+  margin-top: 10px; /* 余白 */
+}
+
+.top-fields {
+  display: flex;
+  justify-content: space-between; /* 余白を均等に分けて配置 */
+  width: 100%; /* 親要素の幅をフルにする */
+}
+
+.top-fields .field {
+  flex: 1; /* 子要素のフレックス項目を等しくする */
+  margin-right: 10px; /* 右のマージンを設定（最後の要素以外） */
+}
+
+.top-fields .field:last-child {
+  margin-right: 0; /* 最後の要素の右マージンを0にする */
 }
 
 /* フォーム要素のスタイル */
-input[type="text"],
-input[type="number"],
-input[type="file"],
-textarea {
-  width: 40%; /* フル幅 */
+.field input[type="text"] {
+  width: 100%; /* タイトルの入力フィールドの幅を広げる */
+  padding: 8px;
+  border: 1px solid #ccc; /* 境界線を微調整 */
+  border-radius: 4px; /* 角を丸く */
+  margin-bottom: 10px; /* 下部のマージン */
+}
+
+.field input[type="number"] {
+  width: 30%; /* 調理時間の入力フィールドの幅を短くする */
+  padding: 8px;
+  border: 1px solid #ccc; /* 境界線を微調整 */
+  border-radius: 4px; /* 角を丸く */
+  margin-bottom: 10px; /* 下部のマージン */
+}
+
+.field textarea {
+  width: 100%; /* 説明文のテキストエリアの幅を広げる */
+  height: 120px; /* 説明文のテキストエリアの高さを調整 */
   padding: 8px;
   border: 1px solid #ccc; /* 境界線を微調整 */
   border-radius: 4px; /* 角を丸く */
@@ -206,22 +240,28 @@ textarea {
 }
 
 /* file_field */
-.image_input_btn{
-  display: block;
-  background-color: brown;
-  width: 180px;
-  height: 30px;
-  margin-top: 10px;
-  margin-left: 10px;
-  border-radius: 5px;
-  padding-top: 2px;
-  color: white;
-  text-decoration: none;
-  text-align: center;
+.image_input_btn {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ccc; /* ここで線の色と太さを指定 */
+  padding: 10px;
+  border-radius: 10px; /* 角を丸くする場合 */
+  margin-top: 10px; /* 上部の余白 */
+  margin-bottom: 30px;
+  height: 200px;
 }
 
-.image_form{
-  display: none;
+.image_icon {
+  width: 50px; /* アイコンのサイズを指定 */
+  height: auto; /* アスペクト比を維持 */
+  margin-bottom: 5px; /* テキストとの間隔 */
+}
+
+.image_form {
+  display: none; /* 元々あったスタイル */
 }
 
 /* 投稿の調味料のとこ */
@@ -244,8 +284,20 @@ textarea {
   .seasoning {
     flex-basis: calc(50% - 10px); /* モバイルビューで2つのアイテムを1行に */
   }
-}
 
+  .field input[type="number"] {
+    width: 100%; /* モバイルでは調理時間のフィールドも幅を広げる */
+  }
+  
+  .top-fields {
+    flex-direction: column; /* モバイルでは縦並びにする */
+  }
+  
+  .top-fields .field {
+    margin-right: 0; /* モバイルではすべての要素の右マージンを0にする */
+    margin-bottom: 10px; /* 要素間のマージンを設定 */
+  }
+}
 
 /* マイページ */
 

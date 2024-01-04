@@ -10,26 +10,29 @@
         </ul>
       </div>
     <% end %>
-    
-    <div class="left-section">
-      <%= f.label :image do %>
-        <%= image_tag('camera.png', size: "260x260") %>
-        <%= f.file_field :image, style: 'display:none' %>
-      <% end %>
 
-      <div class="field">
-        <%= f.text_field :title, placeholder: "タイトルを入力してください" %>
+    <div class="left-section">
+      <div class="top-fields">
+        <div class="field">
+          <%= f.text_field :title, placeholder: "タイトルを入力してください" %>
+        </div>
+
+        <div class="field">
+          <%= f.number_field :cooking_time, placeholder: "目安" %>
+        </div>
       </div>
+      
+      <%= f.label :image, class: "image_input_btn" do %>
+        <%= image_tag('camera.png', size: "260x260", class: "image_icon") %>
+        <span>画像を添付する</span>
+        <%= f.file_field :image, id: "image_upload", class: "image_form" %>
+      <% end %>
 
       <div class="field">
         <%= f.text_area :description, placeholder: "説明文を入力してください" %>
       </div>
-
-      <div class="field">
-        <%= f.number_field :cooking_time, placeholder: "調理時間を指定してください" %>
-      </div>
     </div>
-    
+
     <div class="right-section">
       <div class="seasonings-container">
         <h3>調味料</h3>
