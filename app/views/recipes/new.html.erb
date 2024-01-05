@@ -56,12 +56,22 @@
     <div class="bottom-section">
       <div id="steps-container">
         <h3>手順</h3>
+        <div class="field step-field">
+          <%= f.label "steps_attributes[0][description]", "説明 1", class: "step-label" %>
+          <%= f.text_area "steps_attributes[0][description]", id: "steps_attributes_0_description", class: "step-textarea" %>
+
+          <%= f.label "steps_attributes[0][image]", "画像 1", class: "step-image-label" %>
+          <%= f.file_field "steps_attributes[0][image]", id: "steps_attributes_0_image", class: "step-image-input" %>
+
+          <button type="button" class="delete-step">削除</button>
+        </div>
       </div>
       <button id="add-step" type="button">手順を追加</button>
 
       <div class="actions">
         <%= f.submit "投稿" %>
       </div>
+      
     </div>
 
   </div>

@@ -261,8 +261,16 @@ label {
 }
 
 .image_form {
-  display: none; /* 元々あったスタイル */
+  /* display: none; を削除するか、もしくは以下のように変更 */
+  display: block; /* 非表示にしない */
+  width: 0.1px; /* 実質的には見えないが、アクセシビリティは保たれる */
+  height: 0.1px;
+  opacity: 0; /* 完全に透明にする */
+  overflow: hidden; /* はみ出た内容を隠す */
+  position: absolute; /* 他の要素と重ならないようにする */
+  z-index: -1; /* 裏側に配置する */
 }
+
 
 /* 投稿の調味料のとこ */
 .seasonings-container {
@@ -471,4 +479,15 @@ label {
     flex-direction: column; /* タイトルとお気に入りボタンを縦並びに */
     align-items: flex-start;
   }
+}
+
+/* 手順（要修正） */
+.step-field {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* 要素間のスペース */
+}
+
+.step-field label, .step-field input[type="file"], .step-field textarea {
+  flex: 1;
 }
