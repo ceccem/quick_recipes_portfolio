@@ -23,6 +23,55 @@
   color: #2e1200 !important;
 }
 
+.header-nav {
+  height: 150px; /* お好みの高さに設定 */
+  background-image: url('dish.png'); /* 画像のパスを設定 */
+  background-size: cover;
+  background-position: center;
+  height: 220px !important;
+}
+
+.header-center {
+  text-align: center; /* 中央揃え */
+  position: absolute; /* ナビバー内での位置を絶対位置で指定 */
+  left: 50%; /* 左から50%の位置に設定 */
+  top: 135px; /* 上から50%の位置に設定 */
+  transform: translate(-50%, -50%); /* 要素の中心を計算して配置 */
+  width: 100%; /* 幅を100%に設定 */
+}
+
+.header-center h1 {
+  font-family: 'RocknRoll One', sans-serif;
+  font-family: 'Yusei Magic', sans-serif;
+  font-family: 'Zen Maru Gothic', serif;
+  font-size: 2.5rem; /* サイズを大きく調整 */
+  color: #2e1200; /* 文字色を白に */
+  margin: 0; /* 余白をなくす */
+  padding: 0.5rem 0; /* 上下のパディングを設定 */
+}
+
+.header-center .header-subtitle {
+  font-family: 'RocknRoll One', sans-serif;
+  font-family: 'Yusei Magic', sans-serif;
+  font-family: 'Zen Maru Gothic', serif;
+  font-size: 1.2rem; /* サイズを小さく調整 */
+  color: #2e1200; /* 文字色を白に */
+  margin: 0; /* 余白をなくす */
+  padding: 0.5rem 0; /* 上下のパディングを設定 */
+}
+
+/* ヘッダー右側 */
+.nav-link.image-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-link.image-link .link-text {
+  font-size: 0.75rem; /* 小さな文字サイズ */
+  color: #f4eeea; /* 既存のスタイルを使用 */
+}
+
 /* トップメニュー */
 #g_navi {
 background: #2e1200;
