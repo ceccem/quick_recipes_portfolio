@@ -60,8 +60,11 @@
           <%= f.label "steps_attributes[0][description]", "説明 1", class: "step-label" %>
           <%= f.text_area "steps_attributes[0][description]", id: "steps_attributes_0_description", class: "step-textarea" %>
 
-          <%= f.label "steps_attributes[0][image]", "画像 1", class: "step-image-label" %>
-          <%= f.file_field "steps_attributes[0][image]", id: "steps_attributes_0_image", class: "step-image-input" %>
+          <%= f.label "steps_attributes[0][image]", class: "image_input_btn step-image-label" do %>
+            <%= image_tag('camera.png', size: "50x50", class: "image_icon") %>
+            <span>画像を添付する</span>
+            <%= f.file_field "steps_attributes[0][image]", id: "steps_attributes_0_image", class: "step-image-input", style: "display: none;" %>
+          <% end %>
 
           <button type="button" class="delete-step">削除</button>
         </div>
