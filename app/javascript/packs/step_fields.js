@@ -1,17 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
   const stepsContainer = document.getElementById("steps-container");
-  let stepIndex = 1;
+  let stepIndex = stepsContainer.querySelectorAll(".step-field").length;
 
-  stepsContainer.addEventListener("click", (e) => {
-    if (e.target.classList.contains("delete-step")) {
-      e.preventDefault();
-      e.target.parentElement.remove();
-    }
+  const addStepButton = document.getElementById("add-step");
+  addStepButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    const newField = addStepField();
+    newField.querySelector(".step-textarea").focus();
   });
 
-  document.getElementById("add-step").addEventListener("click", (e) => {
-    e.preventDefault();
-    addStepField();
+  let lastEnterPressTime = 0;
+  stepsContainer.addEventListener("keydown", (e) => {
+    if (e.target.matches(".step-textarea") && e.key === 'Enter') {
+      e.preventDefault();
+      const currentTime = new Date().getTime();
+
+      if (currentTime - lastEnterPressTime <= 1000) {
+        const newField = addStepField();
+        newField.querySelector(".step-textarea").focus();
+        lastEnterPressTime = 0;
+      } else {
+        lastEnterPressTime = currentTime;
+      }
+    }
   });
 
   function addStepField() {
@@ -67,5 +78,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     stepIndex++;
     return stepFieldSet;
+  }
+
+  stepsContainer.addEventListener("click", (e) => {
+    if (e.target.classList.contains("delete-step")) {
+      e.preventDefault();
+      const stepField = e.target.closest(".step-field");
+      stepField.remove();
+      stepIndex--;
+      updateStepLabels();
+    }
+  });
+
+  function updateStepLabels() {
+    stepsContainer.querySelectorAll(".step-label").forEach((label, index) => {
+      label.textContent = `説明 ${index + 1}`;
+    });
   }
 });

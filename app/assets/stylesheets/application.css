@@ -186,6 +186,13 @@ background: #2e1200;
 
 /* フォームのレイアウト */
 .form-container {
+  padding: 20px; /* 内側の余白 */
+  margin: 50px auto; /* 上下左右の余白 */
+  border: 1px solid #ccc; /* 境界線を設定 */
+  border-radius: 4px; /* 角を丸くする */
+  width: auto; /* 幅を自動にする */
+  max-width: 960px; /* 最大幅を設定 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 影を付ける（オプション） */
   display: flex;
   flex-wrap: wrap;
   gap: 20px; /* セクション間のスペース */
@@ -319,7 +326,6 @@ label {
   position: absolute; /* 他の要素と重ならないようにする */
   z-index: -1; /* 裏側に配置する */
 }
-
 
 /* 投稿の調味料のとこ */
 .seasonings-container {
