@@ -14,7 +14,7 @@
     <div class="left-section">
       <div class="top-fields">
         <div class="field">
-          <%= f.text_field :title, placeholder: "タイトルを入力してください" %>
+          <%= f.text_field :title, placeholder: "タイトル" %>
         </div>
 
         <div class="field">
@@ -48,7 +48,7 @@
 
       <div id="ingredients-container">
         <h3>食材</h3>
-        <input type="text" name="recipe_form[ingredient_names][]">
+        <input type="text" name="recipe_form[ingredient_names][]", placeholder="食材" >
       </div>
       <button id="add-ingredient" type="button">食材を追加</button>
     </div>

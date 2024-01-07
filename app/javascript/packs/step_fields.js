@@ -39,16 +39,17 @@ document.addEventListener("DOMContentLoaded", () => {
     descriptionTextArea.id = `steps_attributes_${stepIndex}_description`;
     descriptionTextArea.className = "step-textarea";
 
-    const imageLabel = document.createElement("label");
-    imageLabel.className = "image_input_btn step-image-label";
-    imageLabel.innerHTML = `<img src="/path/to/camera.png" class="image_icon" style="width: 50px; height: 50px;"><span>画像を添付する</span>`;
     const imageInput = document.createElement("input");
     imageInput.type = "file";
     imageInput.name = `recipe_form[steps_attributes][${stepIndex}][image]`;
     imageInput.id = `steps_attributes_${stepIndex}_image`;
     imageInput.className = "step-image-input";
     imageInput.style.display = "none";
+
+    const imageLabel = document.createElement("label");
+    imageLabel.className = "image_input_btn step-image-label";
     imageLabel.appendChild(imageInput);
+    imageLabel.innerHTML += `<img src="/assets/camera.png" class="image_icon" style="width: 50px; height: 50px;"><span>画像を添付する</span>`;
 
     imageLabel.addEventListener('click', function(event) {
       event.stopPropagation();
