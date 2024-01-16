@@ -265,7 +265,7 @@ label {
 }
 
 /* フォーム要素のスタイル */
-.field input[type="text"] {
+.recipe-form .field input[type="text"] {
   width: 100%; /* タイトルの入力フィールドの幅を広げる */
   padding: 8px;
   border: 1px solid #ccc; /* 境界線を微調整 */
@@ -273,7 +273,7 @@ label {
   margin-bottom: 10px; /* 下部のマージン */
 }
 
-.field input[type="number"] {
+.recipe-form .field input[type="number"] {
   width: 30%; /* 調理時間の入力フィールドの幅を短くする */
   padding: 8px;
   border: 1px solid #ccc; /* 境界線を微調整 */
@@ -281,7 +281,7 @@ label {
   margin-bottom: 10px; /* 下部のマージン */
 }
 
-.field textarea {
+.recipe-form .field textarea {
   width: 100%; /* 説明文のテキストエリアの幅を広げる */
   height: 120px; /* 説明文のテキストエリアの高さを調整 */
   padding: 8px;

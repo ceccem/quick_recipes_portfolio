@@ -1,5 +1,5 @@
 <%= form_with(model: @recipe_form, url: recipes_path, local: true) do |f| %>
-  <div class="form-container">
+  <div class="form-container recipe-form">
     <% if @recipe_form.errors.any? %>
       <div class="alert alert-danger">
         <h5>エラーが発生しました</h5>
