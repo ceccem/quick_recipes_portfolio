@@ -1,7 +1,7 @@
 <div class="box2">
   <div class="box-inner">
     <%= form_with model: @user, url: user_session_path, local: true do |f| %>
-    <h1>ログイン</h1>
+    <h3>ログイン</h3>
     <div class="box-name">
       <%= f.label :username, "名前" %><br />
       <%= f.text_field :username, autofocus: true %>

@@ -2,7 +2,7 @@
   <div class="box-inner">
     <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
-    <h1>新規会員登録</h1>
+    <h3>新規会員登録</h3>
 
     <div class="box-icon">
       <%= f.label :icon %><br />
@@ -38,7 +38,7 @@
     </div>
 
     <div class="box-login">
-      <%= f.submit "新規登録" %>
+      <%= f.submit "登録" %>
     </div>
     <% end %>
 
