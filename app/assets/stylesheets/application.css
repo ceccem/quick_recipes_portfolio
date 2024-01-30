@@ -547,3 +547,9 @@ label {
 .step-field label, .step-field input[type="file"], .step-field textarea {
   flex: 1;
 }
+
+.footer {
+  height: 200px;
+  width: 100%;
+  text-align: center;
+}
