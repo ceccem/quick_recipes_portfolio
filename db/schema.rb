@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_12_17_150300) do
+ActiveRecord::Schema.define(version: 2024_02_17_121058) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2023_12_17_150300) do
     t.integer "seasoning_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "quantity"
     t.index ["recipe_id"], name: "index_recipe_seasonings_on_recipe_id"
     t.index ["seasoning_id"], name: "index_recipe_seasonings_on_seasoning_id"
   end

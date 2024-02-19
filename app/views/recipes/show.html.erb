@@ -45,11 +45,11 @@
     </ul>
 
     <h3>調味料</h3>
-    <ul>
-      <% @seasonings.each do |seasoning| %>
-        <li><%= seasoning.name %></li>
-      <% end %>
-    </ul>
+      <ul>
+        <% @seasonings_with_quantities.each do |recipe_seasoning| %>
+          <li><%= recipe_seasoning.seasoning.name %>: <%= recipe_seasoning.quantity %></li>
+        <% end %>
+      </ul>
   </div>
 </div>
 

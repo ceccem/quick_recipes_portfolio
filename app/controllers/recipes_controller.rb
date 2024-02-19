@@ -10,7 +10,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @seasonings = @recipe.seasonings
+    @seasonings_with_quantities = @recipe.recipe_seasonings.includes(:seasoning)
     @ingredients = @recipe.ingredients
   end
 
@@ -68,7 +68,7 @@ class RecipesController < ApplicationController
   end
 
   def recipe_form_params
-    params.require(:recipe_form).permit(:title, :description, :cooking_time, :image, seasoning_ids: [], ingredient_names: [], steps_attributes: [:description, :image])
+    params.require(:recipe_form).permit(:title, :description, :cooking_time, :image, seasoning_ids: [], ingredient_names: [], steps_attributes: [:description, :image], seasoning_quantities: {})
   end
 
   def check_owner_or_admin

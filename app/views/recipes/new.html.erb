@@ -39,12 +39,15 @@
         <div class="seasonings-field">
           <% Seasoning.all.each do |seasoning| %>
             <div class="seasoning">
-              <%= f.check_box :seasoning_ids, { multiple: true }, seasoning.id, nil %>
-              <%= seasoning.name %>
+              <%= f.check_box :seasoning_ids, { multiple: true, id: "seasoning_#{seasoning.id}" }, seasoning.id, nil %>
+              <%= f.label :seasoning_ids, seasoning.name, value: seasoning.id %>
+              <%= f.text_field "seasoning_quantities[#{seasoning.id}]", id: "quantity_for_seasoning_#{seasoning.id}", class: "seasoning-quantity", style: "display: none;", placeholder: "分量" %>
             </div>
           <% end %>
+
         </div>
       </div>
+
 
       <div id="ingredients-container">
         <h3>食材</h3>
@@ -81,3 +84,4 @@
 <% end %>
 <%= javascript_pack_tag 'ingredient_fields' %>
 <%= javascript_pack_tag 'step_fields' %>
+<%= javascript_pack_tag 'seasonings' %>

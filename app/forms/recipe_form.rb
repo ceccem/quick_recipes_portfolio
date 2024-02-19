@@ -1,28 +1,50 @@
 class RecipeForm
   include ActiveModel::Model
 
-  attr_accessor :title, :description, :cooking_time, :image, :steps_attributes, :user, :seasoning_ids, :ingredient_ids, :ingredient_names
+  attr_accessor :title, :description, :cooking_time, :image, :steps_attributes,
+                :user, :seasoning_ids, :ingredient_ids, :ingredient_names,
+                :seasoning_quantities
+
+  validates :title, :description, :cooking_time, presence: true
 
   def save
     return false unless valid?
 
     ActiveRecord::Base.transaction do
-      recipe = user.recipes.create(title: title, description: description, cooking_time: cooking_time, image: image)
-      steps_attributes&.each_value do |step_params|
-        recipe.steps.create(step_params) unless step_params[:description].blank?
-      end
-      recipe.seasoning_ids = seasoning_ids if seasoning_ids.present?
-      recipe.ingredient_ids = ingredient_ids if ingredient_ids.present?
-      (ingredient_names || []).each do |name|
-        next if name.blank?
-        ingredient = Ingredient.find_or_create_by!(name: name)
-        recipe.ingredients << ingredient
-      end
-      
+      recipe = user.recipes.create!(title: title, description: description, cooking_time: cooking_time, image: image)
+      create_steps_for(recipe)
+      assign_seasonings_and_quantities_to(recipe)
+      assign_ingredients_to(recipe)
       recipe.save!
     end
     true
   rescue ActiveRecord::RecordInvalid
     false
+  end
+
+  private
+
+  def create_steps_for(recipe)
+    steps_attributes&.each_value do |step_params|
+      recipe.steps.create!(step_params) unless step_params[:description].blank?
+    end
+  end
+
+  def assign_seasonings_and_quantities_to(recipe)
+    seasoning_quantities&.each do |seasoning_id, quantity|
+      next if quantity.blank? || seasoning_id.blank?
+      
+      recipe_seasoning = recipe.recipe_seasonings.find_or_initialize_by(seasoning_id: seasoning_id)
+      recipe_seasoning.quantity = quantity
+      recipe_seasoning.save!
+    end
+  end
+
+  def assign_ingredients_to(recipe)
+    (ingredient_names || []).each do |name|
+      next if name.blank?
+      ingredient = Ingredient.find_or_create_by!(name: name)
+      recipe.ingredients << ingredient unless recipe.ingredients.include?(ingredient)
+    end
   end
 end
