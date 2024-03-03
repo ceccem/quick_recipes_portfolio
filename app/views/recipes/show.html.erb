@@ -5,7 +5,6 @@
     <li class="breadcrumb-item active" aria-current="page"><%= @recipe.title %></li>
   </ol>
 </nav>
-
 <div class="recipe-container">
   <div class="recipe-top">
     <div class="recipe-title">
@@ -39,11 +38,10 @@
   <div class="recipe-right">
     <h3>食材</h3>
     <ul>
-      <% @ingredients.each do |ingredient| %>
-        <li><%= ingredient.name %></li>
+      <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+        <li><%= recipe_ingredient.ingredient.name %>: <%= recipe_ingredient.quantity %></li>
       <% end %>
     </ul>
-
     <h3>調味料</h3>
       <ul>
         <% @seasonings_with_quantities.each do |recipe_seasoning| %>
@@ -52,7 +50,6 @@
       </ul>
   </div>
 </div>
-
 <div class="recipe-steps">
   <h3>レシピ</h3>
   <ol>

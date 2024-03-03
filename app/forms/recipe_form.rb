@@ -50,8 +50,11 @@ class RecipeForm
     ingredient_quantities_array = ingredient_quantities || []
     ingredient_names_array.zip(ingredient_quantities_array).each do |name, quantity|
       next if name.blank? || quantity.blank?
-      ingredient = Ingredient.find_or_create_by!(name: name, quantity: quantity)
-      recipe.ingredients << ingredient unless recipe.ingredients.include?(ingredient)
+      ingredient = Ingredient.find_or_create_by!(name: name)
+      recipe_ingredient = recipe.recipe_ingredients.find_or_initialize_by(ingredient: ingredient)
+      recipe_ingredient.quantity = quantity
+      recipe_ingredient.save!
     end
   end
+  
 end
