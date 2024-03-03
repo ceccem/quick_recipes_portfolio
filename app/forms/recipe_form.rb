@@ -3,9 +3,14 @@ class RecipeForm
 
   attr_accessor :title, :description, :cooking_time, :image, :steps_attributes,
                 :user, :seasoning_ids, :ingredient_ids, :ingredient_names,
-                :seasoning_quantities
+                :seasoning_quantities, :ingredient_quantities
 
   validates :title, :description, :cooking_time, presence: true
+
+  def initialize(attributes = {})
+    super
+    @ingredient_quantities ||= []
+  end
 
   def save
     return false unless valid?
@@ -41,9 +46,11 @@ class RecipeForm
   end
 
   def assign_ingredients_to(recipe)
-    (ingredient_names || []).each do |name|
-      next if name.blank?
-      ingredient = Ingredient.find_or_create_by!(name: name)
+    ingredient_names_array = ingredient_names || []
+    ingredient_quantities_array = ingredient_quantities || []
+    ingredient_names_array.zip(ingredient_quantities_array).each do |name, quantity|
+      next if name.blank? || quantity.blank?
+      ingredient = Ingredient.find_or_create_by!(name: name, quantity: quantity)
       recipe.ingredients << ingredient unless recipe.ingredients.include?(ingredient)
     end
   end

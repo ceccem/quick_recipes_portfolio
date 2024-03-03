@@ -2,56 +2,40 @@ document.addEventListener("DOMContentLoaded", () => {
   const ingredientsContainer = document.getElementById("ingredients-container");
   const addIngredientButton = document.getElementById("add-ingredient");
 
-  // エンターキーを2回押すと新しい食材入力欄を追加する機能を全ての食材入力欄に適用する関数
-  const applyDoubleEnterToAddField = (field) => {
-    let lastEnterPressTime = 0;
+  const addIngredientField = () => {
+    const ingredientFieldContainer = document.createElement("div");
+    ingredientFieldContainer.classList.add("ingredient-field-container", "mb-3");
 
-    field.addEventListener("keydown", (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        const currentTime = new Date().getTime();
-        if (currentTime - lastEnterPressTime <= 500) {
-          const newField = addIngredientField();
-          newField.focus();
-        }
-        lastEnterPressTime = currentTime;
-      }
-    });
+    const newIngredientField = document.createElement("input");
+    newIngredientField.type = "text";
+    newIngredientField.name = "recipe_form[ingredient_names][]";
+    newIngredientField.classList.add("ingredient-name-field", "form-control");
+    newIngredientField.placeholder = "食材名";
+
+    const newQuantityField = document.createElement("input");
+    newQuantityField.type = "text";
+    newQuantityField.name = "recipe_form[ingredient_quantities][]";
+    newQuantityField.classList.add("ingredient-quantity-field", "form-control");
+    newQuantityField.placeholder = "分量";
+
+    ingredientFieldContainer.appendChild(newIngredientField);
+    ingredientFieldContainer.appendChild(newQuantityField);
+
+    ingredientsContainer.appendChild(ingredientFieldContainer);
+    addDeleteButton(ingredientFieldContainer);
   };
 
-  // 既存の全ての食材入力欄に上記の機能を適用
-  document.querySelectorAll(".ingredient-name-field").forEach(applyDoubleEnterToAddField);
+  const addDeleteButton = (fieldContainer) => {
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "削除";
+    deleteButton.type = "button";
+    deleteButton.classList.add("btn", "btn-danger", "delete-ingredient-btn");
+    deleteButton.onclick = () => fieldContainer.remove();
+    fieldContainer.appendChild(deleteButton);
+  };
 
-  // '食材を追加'ボタンのイベントリスナー
   addIngredientButton.addEventListener("click", (e) => {
     e.preventDefault();
-    const newField = addIngredientField();
-    newField.focus();
+    addIngredientField();
   });
-
-  // 新しい食材入力欄を追加する関数
-  function addIngredientField() {
-    const newField = document.createElement("input");
-    newField.type = "text";
-    newField.name = "recipe_form[ingredient_names][]";
-    newField.classList.add("ingredient-name-field");
-    applyDoubleEnterToAddField(newField); // 新しいフィールドにも2回エンターの機能を適用
-    ingredientsContainer.appendChild(newField);
-    addDeleteButton(newField);
-    return newField;
-  }
-
-  // 削除ボタンを追加する関数
-  function addDeleteButton(field) {
-    const deleteButton = document.createElement("button");
-    deleteButton.type = "button";
-    deleteButton.textContent = "削除";
-    deleteButton.classList.add("delete-ingredient");
-    deleteButton.addEventListener("click", (e) => {
-      e.preventDefault();
-      field.remove();
-      deleteButton.remove();
-    });
-    field.parentNode.insertBefore(deleteButton, field.nextSibling);
-  }
 });
