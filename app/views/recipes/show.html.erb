@@ -28,7 +28,7 @@
   </div>
   <div class="recipe-left">
     <% if @recipe.image? %>
-      <%= image_tag @recipe.image.url, class: "recipe-image" %>
+      <%= image_tag @recipe.image.thumb.url, class: "recipe-image" %>
     <% else %>
       <%= image_tag "dish.png", class: "recipe-image" %>
     <% end %>

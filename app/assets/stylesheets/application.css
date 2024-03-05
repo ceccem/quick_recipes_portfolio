@@ -560,3 +560,10 @@ label {
   width: 100%;
   text-align: center;
 }
+
+
+/* デフォルト画像サイズ */
+.recipe-image {
+  max-width: 200px; /* 最大幅を200pxに設定 */
+  height: auto;    /* 高さを自動調整 */
+}
