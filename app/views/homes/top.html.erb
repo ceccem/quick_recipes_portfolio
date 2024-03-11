@@ -1,35 +1,24 @@
-<div class="carousel_wrapper">
-  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <% @random_recipes.each_with_index do |_, index| %>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<%= index %>" class="<%= "active" if index == 0 %>" aria-current="true" aria-label="Slide <%= index + 1 %>"></button>
-      <% end %>
-    </div>
-    <div class="carousel-inner">
-      <% @random_recipes.each_with_index do |recipe, index| %>
-        <div class="carousel-item <%= "active" if index == 0 %>">
+<div class="slider">
+  <% @random_recipes.each do |recipe| %>
+    <div>
+      <div class="card">
+        <div class="card-img-top">
           <% if recipe.image? %>
             <%= image_tag recipe.image.url, class: "d-block w-100 rounded-2" %>
           <% else %>
-            <%= image_tag "dish.png", class: "card-img-top" %>
+            <%= image_tag "dish.png", class: "d-block w-100 rounded-2" %>
           <% end %>
-          <div class="carousel-caption d-none d-md-block">
-            <h5><%= link_to recipe.title, recipe_path(recipe) %></h5>
-            <p><%= recipe.description %></p>
-          </div>
         </div>
-      <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to recipe.title, recipe_path(recipe) %></h5>
+          <p class="card-text"><%= recipe.description %></p>
+        </div>
+      </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
+  <% end %>
 </div>
+
+
 
 <div class="main-wrapper">
   <div class="container mt-5">
@@ -81,13 +70,3 @@
     </div>
   </div>
 </div>
-
-
-<ul class="center">
-  <li><%= image_tag "dish.png", size: "350x350" %></li>
-  <li><%= image_tag "dish.png", size: "350x350" %></li>
-  <li><%= image_tag "dish.png", size: "350x350" %></li>
-  <li><%= image_tag "dish.png", size: "350x350" %></li>
-  <li><%= image_tag "dish.png", size: "350x350" %></li>
-  <li><%= image_tag "dish.png", size: "350x350" %></li>
-</ul>

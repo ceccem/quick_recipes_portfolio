@@ -581,3 +581,29 @@ label {
 .slide-items img {
   object-fit: cover;
 }
+
+
+.slick-prev,
+.slick-next {
+  font-size: 20px;
+  line-height: 1;
+  opacity: 0.75;
+  background: transparent;
+  color: black;
+  border: none;
+}
+
+.slick-prev {
+  left: -25px;
+}
+
+.slick-next {
+  right: -25px;
+}
+
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus {
+  opacity: 1;
+}

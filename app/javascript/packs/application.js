@@ -17,7 +17,9 @@ Turbolinks.start()
 ActiveStorage.start()
 
 document.addEventListener("turbolinks:load", () => {
-  $('.center').slick({
+  $('.slider').slick({
+    prevArrow: '<button class="slick-prev slick-arrow" aria-label="Previous" type="button" style=""><</button>',
+    nextArrow: '<button class="slick-next slick-arrow" aria-label="Next" type="button" style="">></button>',
     centerMode: true,
     centerPadding: '60px',
     slidesToShow: 3,
@@ -43,3 +45,4 @@ document.addEventListener("turbolinks:load", () => {
     ]
   });
 });
+
